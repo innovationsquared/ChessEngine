@@ -2,7 +2,7 @@ import pygame
 import board
 
 SCREEN_WIDTH = 940
-SCREEN_HEIGHT =  540
+SCREEN_HEIGHT = 800 
 pygame.init()
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Pygame")
@@ -16,7 +16,7 @@ while run:
         if event.type == pygame.QUIT:
             run = False
 
-    SCREEN.fill('blue')
+    SCREEN.fill('black')
     #pygame.draw.rect(SCREEN, 'white', pygame.Rect(30,30,60,60))
     board.draw_board(SCREEN, SCREEN_WIDTH, SCREEN_HEIGHT)   
     pygame.display.flip()
