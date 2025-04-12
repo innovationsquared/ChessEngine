@@ -1,4 +1,5 @@
 import pygame
+import board
 
 SCREEN_WIDTH = 940
 SCREEN_HEIGHT =  540
@@ -10,7 +11,9 @@ clock = pygame.time.Clock()
 run = True
 while run:
 
-     # Event handling
+    board.draw_board(SCREEN, SCREEN_WIDTH, SCREEN_HEIGHT)
+
+    # Event handling
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
