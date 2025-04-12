@@ -11,13 +11,10 @@ clock = pygame.time.Clock()
 run = True
 
 while run:
-
-    
-
     # Event handling
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
+            run = False
 
     SCREEN.fill('blue')
     #pygame.draw.rect(SCREEN, 'white', pygame.Rect(30,30,60,60))
