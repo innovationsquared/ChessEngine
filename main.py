@@ -1,8 +1,13 @@
 import pygame
 import board
 
+<<<<<<< Updated upstream
 SCREEN_WIDTH = 500
 SCREEN_HEIGHT = 400
+=======
+SCREEN_WIDTH = 1000 
+SCREEN_HEIGHT = 900 
+>>>>>>> Stashed changes
 pygame.init()
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Pygame")
