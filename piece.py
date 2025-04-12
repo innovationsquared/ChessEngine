@@ -15,8 +15,10 @@ black_locations = [(0, 7), (1, 7), (2, 7), (3, 7), (4, 7), (5, 7), (6, 7), (7, 7
 # Piece class
 
 class Piece():
-    def __init__(self, type, color, image):
+    def __init__ (self, type, color, image):
         self.type = type
         self.color = color
         self.image = pygame.image.load(image).convert_alpha()
         self.location = self.getStartingLocation()
+
+    def getStartingLocation ()
