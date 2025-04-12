@@ -16,7 +16,7 @@ while run:
         if event.type == pygame.QUIT:
             run = False
 
-    SCREEN.fill('black')
+    SCREEN.fill((145, 135, 97))
     #pygame.draw.rect(SCREEN, 'white', pygame.Rect(30,30,60,60))
     board.draw_board(SCREEN, SCREEN_WIDTH, SCREEN_HEIGHT)   
     pygame.display.flip()

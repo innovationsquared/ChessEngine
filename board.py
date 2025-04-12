@@ -5,9 +5,8 @@ def draw_board(SCREEN, WIDTH, HEIGHT):
         col = i % 4  
         row = i // 4
         if row % 2 == 0:
-            pygame.draw.rect(SCREEN, 'white', [600 - (col * 200), row * 100, 100, 100])
+            pygame.draw.rect(SCREEN, (242, 231, 194), [300 - (col * 100), row * 50, 50, 50])
         else:
-            pygame.draw.rect(SCREEN, 'light gray', [700 - (col * 200), row * 100, 100, 100])
-    pygame.draw.rect(SCREEN, 'gray', [0, 800, WIDTH, 100])
-    pygame.draw.rect(SCREEN, 'gold', [0, 800, WIDTH, 100], 5)
-    pygame.draw.rect(SCREEN, 'gold', [800, 0, 200, HEIGHT], 5)
+            pygame.draw.rect(SCREEN, (242, 231, 194), [350 - (col * 100), row * 50, 50, 50])
+
+    pygame.draw.rect(SCREEN, (222, 210, 172), [400, 0, 100, HEIGHT], 5)
