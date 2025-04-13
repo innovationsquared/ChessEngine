@@ -84,7 +84,6 @@ class Board:
         def knight_moves():
             potential_moves = [(row-2,col+1),(row+2,col+1),(col+2,row-1),(row-2,col-1),
                      (row+1,col+2),(row+1,col-2),(row-1,col+2),(row-1,col-2)]
-
             for potential_move in potential_moves:
                 potential_move_row, potential_move_col = potential_move
                 if Square.check_range(potential_move_row,potential_move_col):

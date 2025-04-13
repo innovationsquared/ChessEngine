@@ -48,7 +48,7 @@ class Main:
                           piece = board.squares[row_selected][col_selected].piece
                           initial_row = row_selected
                           initial_col = col_selected
-                          print('selected piece')
+                          print(f'selected {piece.type}')
                     #right click
                     elif event.button == 3:
                         if piece != None:
@@ -59,12 +59,13 @@ class Main:
                             initial = Square(initial_row, initial_col)
                             target = Square(new_row, new_col)
                             move = Move(initial, target)
-
-                            print('working here')
-                            board.move(piece, move)
-                            # show
-                            game.draw_board(screen)
-                            game.show_pieces(screen)
+                            if board.valid_move(piece, move):
+                                print('working here')
+                                board.move(piece, move)
+                                # show
+                                game.draw_board(screen)
+                                game.show_pieces(screen)
+                            else: print('not working')
                             # if not board.squares[new_row][new_col].has_piece():
                             #     img = pygame.image.load(piece.texture)
                             #     img = pygame.transform.scale(img, (500 // 8, 500 // 8))
