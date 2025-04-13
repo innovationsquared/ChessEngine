@@ -31,8 +31,6 @@ class Board:
         
 
     def valid_move(self, piece, move):
-        for move in piece.moves:
-            print(move)
         return move in piece.moves
 
         
@@ -57,7 +55,7 @@ class Board:
                 if Square.in_range(move_row):
                     if self.squares[move_row][col].is_empty():
                         # create initial and target moves
-                        initial = Square(move_row, col)
+                        initial = Square(row, col)
                         target = Square(move_row, col)
                         move = Move(initial, target)
                         piece.add_move(move)
@@ -76,7 +74,7 @@ class Board:
                 # check for in range and has an enemy on the target square
                 if Square.in_range(move_row, move_col):
                     if self.squares[move_row][move_col].has_rival(piece.color):
-                        initial = Square(move_row, move_col)
+                        initial = Square(row, col)
                         target = Square(move_row, move_col)
                         move = Move(initial,target)
                         piece.add_move(move)
@@ -85,13 +83,12 @@ class Board:
 
         # Knight moves
         def knight_moves():
-            potential_moves = [(row-2,col+1),(row+2,col+1),(col+2,row-1),(row-2,col-1),
-                     (row+1,col+2),(row+1,col-2),(row-1,col+2),(row-1,col-2)]
+            potential_moves = [(row-2,col+1),(row+2,col+1),(col+2,row-1),(col-2,col-1),
+                    (row+1,col+2),(row+1,col-2),(row-1,col+2),(row-1,col-2)]
             for potential_move in potential_moves:
                 potential_move_row, potential_move_col = potential_move
-                if Square.check_range(potential_move_row,potential_move_col):
-                    if self.squares[potential_move_row][potential_move_col].is_empty_or_rival(piece.color):
-                        
+                if Square.in_range(potential_move_row,potential_move_col):
+                    if self.squares[potential_move_row][potential_move_col].check_empty_or_rival(piece.color):
                         initial = Square(row, col) # starting square
                         target = Square(potential_move_row, potential_move_col) # target squares
                         # create a new move for all of the valid moves
@@ -104,7 +101,6 @@ class Board:
                 row_inc, col_inc = inc
                 potential_move_row = row + row_inc
                 potential_move_col = col + col_inc
-
                 while True:
                     if Square.in_range(potential_move_row, potential_move_col):
                         initial = Square(row, col)
@@ -112,7 +108,7 @@ class Board:
                         move = Move(initial, target)
                         
                         # empty square, add move and continue looping
-                        if self.squares[potential_move_row][potential_move_col].isempty():
+                        if self.squares[potential_move_row][potential_move_col].is_empty():
                             piece.add_move(move)
 
                         # has enemy, add move, break
@@ -134,7 +130,7 @@ class Board:
                
             for potential_move in potential_moves:
                 potential_move_row, potential_move_col = potential_move
-                if Square.check_range(potential_move_row,potential_move_col):
+                if Square.in_range(potential_move_row,potential_move_col):
                     if self.squares[potential_move_row][potential_move_col].is_empty_or_rival(piece.color):
                         
                         initial = Square(row, col) # starting square
@@ -190,7 +186,7 @@ class Board:
         #knights
         self.squares[0][1] = Square(0, 1, Knight('black'))
         self.squares[0][6] = Square(0, 6, Knight('black'))
-        self.squares[7][1] = Square(0, 1, Knight('white'))
+        self.squares[7][1] = Square(7, 1, Knight('white'))
         self.squares[7][6] = Square(7, 6, Knight('white'))
         #Bishops
         self.squares[0][2] = Square(0, 2, Bishop('black'))

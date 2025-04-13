@@ -40,34 +40,38 @@ class Main:
                     #left click
                     if event.button == 1:
                         selector.update_pos(event.pos)
-                        row_selected = selector.mouseY // SQSIZE
-                        col_selected = selector.mouseX // SQSIZE
-                        #print(row_selected)
-                        #print(col_selected)
-                        if board.squares[row_selected][col_selected].has_piece():
-                          piece = board.squares[row_selected][col_selected].piece
-                          initial_row = row_selected
-                          initial_col = col_selected
-                          board.calculate_moves(piece, initial_row, initial_col)
+                        initial_row = selector.mouseY // SQSIZE
+                        initial_col = selector.mouseX // SQSIZE
+                        #print(initial_row)
+                        #print(initial_col)
+                        if board.squares[initial_row][initial_col].has_piece():
+                          piece = board.squares[initial_row][initial_col].piece
+                          
+                          
+                          #board.calculate_moves(piece, initial_row, initial_col)
                           print(f'selected {piece.type}')
                     #right click
                     elif event.button == 3:
-                        if piece != None:
-                            selector.update_pos(event.pos)
-                            new_row = selector.mouseY // SQSIZE
-                            new_col = selector.mouseX // SQSIZE
-                            # create possible move
-                            initial = Square(initial_row, initial_col)
-                            target = Square(new_row, new_col)
-                            move = Move(initial, target)
-                            if board.valid_move(piece, move):
-                                print('working here')
-                                board.move(piece, move)
-                                # show
-                                game.draw_board(screen)
-                                game.show_pieces(screen)
-                            else: print('not working')
-                            # if not board.squares[new_row][new_col].has_piece():
+                    
+                        selector.update_pos(event.pos)
+                        new_row = selector.mouseY // SQSIZE
+                        new_col = selector.mouseX // SQSIZE
+                        # create possible move
+                        initial = Square(initial_row, initial_col)
+                        target = Square(new_row, new_col)
+                        print(initial)
+                        print(target)
+                        move = Move(initial, target)
+                        if board.valid_move(piece, move):
+                            print('working here')
+                            board.move(piece, move)
+                            # show
+                            game.draw_board(screen)
+                            game.show_pieces(screen)
+                        
+                        #     print('cant move here ')
+                        #     break 
+                        # if not board.squares[new_row][new_col].has_piece():
                             #     img = pygame.image.load(piece.texture)
                             #     img = pygame.transform.scale(img, (500 // 8, 500 // 8))
                             #     img_center = new_col * SQSIZE + SQSIZE // 2, new_row * SQSIZE + SQSIZE // 2
