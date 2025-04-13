@@ -77,10 +77,10 @@ class Board:
 
         
         if piece.name == 'pawn':
-            pass
+            pawn_moves()
 
         elif piece.name == 'knight':
-            pass
+            knight_moves()
 
         elif piece.name == 'bishop':
             pass
