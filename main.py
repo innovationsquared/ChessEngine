@@ -1,10 +1,6 @@
 import pygame
 import prompt
-from boardrepresentation import *
 from game import Game 
-#import const
-
-from dragging import Dragger
 SCREEN_WIDTH = 500
 SCREEN_HEIGHT = 500
 class Main:
@@ -13,12 +9,12 @@ class Main:
         self.SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         pygame.display.set_caption("Hakfish")
         self.game = Game()
-        self.dragger = Dragger()
+        #self.dragger = Dragger()
     
     def mainLoop(self):
         screen = self.SCREEN
         game = self.game
-        dragger = self.dragger
+        #dragger = self.dragger
         # Give instructions
         print(prompt.getInstructions())
 
@@ -33,8 +29,9 @@ class Main:
                 if event.type == pygame.QUIT:
                     run = False
                 elif event.type == pygame.MOUSEBUTTONDOWN:
-                    dragger.update_mouse(event.pos)
+                    #dragger.update_mouse(event.pos)
                     #row_selected = 
+                    pass
                 elif event.type == pygame.MOUSEBUTTONUP:
                     pass
                 elif event.type == pygame.MOUSEMOTION:
