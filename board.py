@@ -100,27 +100,30 @@ class Board:
             for col in range(8):
                 self.squares[row][col] = Square(row, col)
 
-    def add_pieces(self, color):
-        row_pawn, row_other = (6,7) if color == 'white' else (1,0)
-
+    def add_pieces(self):
         #pawns
         for col in range (8):
-            self.squares[row_pawn][col] = Square(row_pawn, col, Pawn(color))
-        
-        #knight
-        self.squares[row_other][1] = Square(row_other, 1, Knight(color))
-        self.squares[row_other][6] = Square(row_other, 6, Knight(color))
-
-        #bishops
-        self.squares[row_other][2] = Square(row_other, 2, Bishop(color))
-        self.squares[row_other][5] = Square(row_other, 5, Bishop(color))
-
-        # rooks
-        self.squares[row_other][0] = Square(row_other, 0, Rook(color))
-        self.squares[row_other][7] = Square(row_other, 7, Rook(color))
-
-        # queen
-        self.squares[row_other][3] = Square(row_other, 3, Queen(color))
-
-        #king
-        self.squares[row_other][4] = Square(row_other, 4, King(color))
+            self.squares[1][col] = Square(1, col, Pawn('black'))
+           #white pawns
+            self.squares[6][col] = Square(6, col, Pawn('white'))
+        #knights
+        self.squares[0][1] = Square(0, 1, Knight('black'))
+        self.squares[0][6] = Square(0, 6, Knight('black'))
+        self.squares[7][1] = Square(0, 1, Knight('white'))
+        self.squares[7][6] = Square(7, 6, Knight('white'))
+        #Bishops
+        self.squares[0][2] = Square(0, 2, Bishop('black'))
+        self.squares[0][5] = Square(0, 5, Bishop('black'))
+        self.squares[7][2] = Square(7,2,Bishop('white'))
+        self.squares[7][5] = Square(7,5,Bishop('white'))
+        #Rook
+        self.squares[0][0] = Square(0, 0, Rook('black'))
+        self.squares[0][7] = Square(0, 7, Rook('black'))
+        self.squares[7][0] = Square(7,0,Rook('white'))
+        self.squares[7][7] = Square(7,7,Rook('white'))
+        #Kingz
+        self.squares[0][4] = Square(0,4, King("black"))
+        self.squares[7][4] = Square(7,4, King('white'))
+        #queenz
+        self.squares[0][3] = Square(0,3, Queen('black'))
+        self.squares[7][3] = Square(7,3, Queen('white'))

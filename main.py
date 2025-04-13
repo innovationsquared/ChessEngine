@@ -33,14 +33,32 @@ class Main:
                 if event.type == pygame.QUIT:
                     run = False
                 elif event.type == pygame.MOUSEBUTTONDOWN:
+                    #left click
+                    piece = None
                     if event.button == 1:
                         selector.update_pos(event.pos)
                         row_selected = selector.mouseY // SQSIZE
                         col_selected = selector.mouseX // SQSIZE
                         #print(row_selected)
                         #print(col_selected)
-                        if board.squares[row_selected][col_selected] 
-                            if board.squares[row_selected][col_selected]
+                        if board.squares[row_selected][col_selected].has_piece():
+                          piece = board.squares[row_selected][col_selected].piece
+                          print('selected piece')
+                    #right click
+                    elif event.button == 3:
+                        if piece != None:
+                            selector.update_pos(event.pos)
+                            new_row = selector.mouseY // SQSIZE
+                            new_col = selector.mouseX // SQSIZE
+                            if not board.squares[new_row][new_col].has_piece():
+                                img = pygame.image.load(piece.texture)
+                                img = pygame.transform.scale(img, (500 // 8, 500 // 8))
+                                img_center = new_col * SQSIZE + SQSIZE // 2, new_row * SQSIZE + SQSIZE // 2
+                                piece.texture_rect = img.get_rect(center = img_center)
+                                screen.blit(img, piece.texture_rect)
+                        
+
+
 
                 elif event.type == pygame.MOUSEBUTTONUP:
                     pass
