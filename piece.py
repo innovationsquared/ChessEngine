@@ -1,5 +1,5 @@
 import pygame
-import moves
+import move
 import os
 # Piece class
 
@@ -19,7 +19,7 @@ class Piece():
         self.texture = os.path.join(f'images/{self.color}_{self.type}.png')
         
 
-    def add_moves(self, move):
+    def add_move(self, move):
         self.moves.append(move)
 
 class Pawn(Piece):
