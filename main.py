@@ -1,8 +1,8 @@
 import pygame
 import prompt
 from game import Game 
-SCREEN_WIDTH = 500
-SCREEN_HEIGHT = 500
+from const import *
+
 class Main:
     def __init__(self):
         pygame.init()

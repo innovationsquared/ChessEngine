@@ -10,6 +10,33 @@ class Board:
         self.create()
         self.add_pieces('white')
         self.add_pieces('black')
+    
+    # Calculate all valid moves of a specific piece at a position.
+    def calculate_moves(self, piece, row, col):
+        
+        # Knight moves
+        def knight_moves():
+            moves = [(row-2,col+1),(),(),(),(),(),(),()]
+        
+        
+        if piece.name == 'pawn':
+            pass
+
+        elif piece.name == 'knight':
+            pass
+
+        elif piece.name == 'bishop':
+            pass
+
+        elif piece.name == 'rook':
+            pass
+
+        elif piece.name == 'queen':
+            pass
+
+        elif piece.name == 'king':
+            pass
+
 
     def create(self):
         for row in range(8):
