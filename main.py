@@ -45,11 +45,10 @@ class Main:
                         #print(initial_row)
                         #print(initial_col)
                         if board.squares[initial_row][initial_col].has_piece():
-                          piece = board.squares[initial_row][initial_col].piece
-                          
-                          
-                          #board.calculate_moves(piece, initial_row, initial_col)
-                          print(f'selected {piece.type}')
+                          selected_piece = board.squares[initial_row][initial_col].piece
+
+                          board.calculate_moves(selected_piece, initial_row, initial_col)
+                          print(f'selected {selected_piece.type}')
                     #right click
                     elif event.button == 3:
                     
@@ -61,10 +60,10 @@ class Main:
                         target = Square(new_row, new_col)
                         print(initial)
                         print(target)
-                        move = Move(initial, target)
-                        if board.valid_move(piece, move):
+                        user_move = Move(initial, target)
+                        if board.valid_move(selected_piece, user_move):
                             print('working here')
-                            board.move(piece, move)
+                            board.move(selected_piece, user_move)
                             # show
                             game.draw_board(screen)
                             game.show_pieces(screen)
