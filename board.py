@@ -125,7 +125,21 @@ class Board:
                     # increment increments
                     potential_move_row = potential_move_row + row_inc
                     potential_move_col = potential_move_col + col_inc
+
+        def king_moves():
+            potential_moves = [(row+1,col),(row-1,col),(row,col+1),(row,col-1),
+                               (row+1,col+1),(row-1,col-1),(row+1,col-1),(row-1,col+1)] 
+               
+            for potential_move in potential_moves:
+                potential_move_row, potential_move_col = potential_move
+                if Square.check_range(potential_move_row,potential_move_col):
+                    if self.squares[potential_move_row][potential_move_col].is_empty_or_rival(piece.color):
                         
+                        initial = Square(row, col) # starting square
+                        target = Square(potential_move_row, potential_move_col) # target squares
+                        # create a new move for all of the valid moves
+                        move = Move(initial, target)
+                        piece.add_move(move)   
         
         if piece.name == 'pawn':
             pawn_moves()
@@ -157,7 +171,7 @@ class Board:
                 (0, -1)
             ])
         elif piece.name == 'king':
-            pass
+            king_moves()
 
 
     def create(self):

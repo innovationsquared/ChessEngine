@@ -65,15 +65,8 @@ class Main:
                             # show
                             game.draw_board(screen)
                             game.show_pieces(screen)
-                            # if not board.squares[new_row][new_col].has_piece():
-                            #     img = pygame.image.load(piece.texture)
-                            #     img = pygame.transform.scale(img, (500 // 8, 500 // 8))
-                            #     img_center = new_col * SQSIZE + SQSIZE // 2, new_row * SQSIZE + SQSIZE // 2
-                            #     piece.texture_rect = img.get_rect(center = img_center)
-                            #     screen.blit(img, piece.texture_rect)
-            #loadBoard(SCREEN, loadPosFromFen(startFEN))
+            
             pygame.display.update()
-            #move = prompt.promptForMove()
 
         pygame.quit()
 
