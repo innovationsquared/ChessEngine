@@ -1,7 +1,9 @@
 import pygame
 import prompt
 from game import Game 
+from selector import Selector
 from const import *
+from board import Board
 
 class Main:
     def __init__(self):
@@ -9,12 +11,14 @@ class Main:
         self.SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         pygame.display.set_caption("Hakfish")
         self.game = Game()
-        #self.dragger = Dragger()
+        self.board = Board()
+        self.selector = Selector()
     
     def mainLoop(self):
         screen = self.SCREEN
         game = self.game
-        #dragger = self.dragger
+        selector = self.selector
+        board = self.board
         # Give instructions
         print(prompt.getInstructions())
 
@@ -29,9 +33,15 @@ class Main:
                 if event.type == pygame.QUIT:
                     run = False
                 elif event.type == pygame.MOUSEBUTTONDOWN:
-                    #dragger.update_mouse(event.pos)
-                    #row_selected = 
-                    pass
+                    if event.button == 1:
+                        selector.update_pos(event.pos)
+                        row_selected = selector.mouseY // SQSIZE
+                        col_selected = selector.mouseX // SQSIZE
+                        #print(row_selected)
+                        #print(col_selected)
+                        if board.squares[row_selected][col_selected] 
+                            if board.squares[row_selected][col_selected]
+
                 elif event.type == pygame.MOUSEBUTTONUP:
                     pass
                 elif event.type == pygame.MOUSEMOTION:
