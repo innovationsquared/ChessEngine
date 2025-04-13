@@ -9,11 +9,14 @@ queen = 6
 
 white = 8
 black = 16
-
+SCREEN_WIDTH = 500
+SCREEN_HEIGHT = 500
+SQSZ = SCREEN_WIDTH // 8
 startFEN = "rnbqkbnr/pppppppp/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
-squares = [0] * 64
+
 color = 0
 def loadPosFromFen(fen):
+    squares = [0] * 64
     pieceFromSym = {'k': king, 'p': pawn, 'n': knight, 'b': bishop, 'r': rook, 'q': queen}
     fenboard = fen.split(' ', 1)[0]
     file = 0
@@ -30,27 +33,28 @@ def loadPosFromFen(fen):
                     color = white
                 else: 
                     color = black
-    type = pieceFromSym[c.lower()]
-    squares[rank * 8 + file] = type | color
-    file += 1
+                type = pieceFromSym[c.lower()]
+                squares[rank * 8 + file] = type | color
+                file += 1
     return squares
 
 def loadBoard(screen, arr):
     piece = ""
     for i in range (0,64):
-        j =  int(i / 2)
-        col = j % 4
-        row = i // 4
+        rank = i // 8
+        file = i % 8 
         color = (arr[i] >> 3) & 0x3
         type = arr[i] & 0x7
         if type==none:
             continue
-        if color==white:
+        if color==1:
             piece = switchWhite.get(type, "piece not found")
         else:
             piece = switchBlack.get(type, "piece not found")
-        img = pygame.image.load("/images/" + piece)
-        screen.blit(img, (600 - col * 200, row * 100))
+        img = pygame.image.load("images/" + piece)
+        img.convert()
+        rect = img.get_rect()
+        screen.blit(img, (file * SQSZ, rank * SQSZ))
 
 
 

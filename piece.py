@@ -1,14 +1,20 @@
 import pygame
 import moves
-
+import os
 # Piece class
 
 class Piece():
-    def __init__ (self, type, color, location, image):
+    def __init__ (self, type, color, value, texture, texture_rect):
         self.type = type
         self.color = color
-        self.image = pygame.image.load(image).convert_alpha()
-        self.location = location
+        valuesn = 1 if color == 'white' else -1
+        self.value = value * valuesn
+        self.texture = texture()
+        self.set_texture()
+        self.texture_rect = texture_rect
+    
+    def set_texture(self, size=80):
+        self.texture = os.path.join('images/' + self.color + '_' + self.type)
 
 
 # Pieces and corresponding locations

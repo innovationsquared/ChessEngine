@@ -1,13 +1,13 @@
 import pygame
 import board
 import prompt
-
+from boardrepresentation import *
 SCREEN_WIDTH = 500
 SCREEN_HEIGHT = 500
 
 pygame.init()
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("Cockfish")
+pygame.display.set_caption("Hakfish")
 
 # Give instructions
 print(prompt.getInstructions())
@@ -24,9 +24,9 @@ while run:
     SCREEN.fill((145, 135, 97))
 
     board.draw_board(SCREEN)  
-
+    loadBoard(SCREEN, loadPosFromFen(startFEN))
     pygame.display.update()
-    move = prompt.promptForMove()
+    #move = prompt.promptForMove()
 
 pygame.quit()
 
