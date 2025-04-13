@@ -2,7 +2,7 @@ import pygame
 import board
 
 SCREEN_WIDTH = 500
-SCREEN_HEIGHT = 400
+SCREEN_HEIGHT = 500
 
 pygame.init()
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
