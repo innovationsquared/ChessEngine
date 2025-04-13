@@ -2,6 +2,8 @@ import pygame
 import prompt
 from boardrepresentation import *
 from game import Game 
+#import const
+
 from dragging import Dragger
 SCREEN_WIDTH = 500
 SCREEN_HEIGHT = 500
