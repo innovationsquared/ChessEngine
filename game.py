@@ -1,6 +1,7 @@
 import pygame
 from board import Board
-SQSIZE = 500 // 8
+from const import *
+
 class Game:
     def __init__(self):
         self.board = Board()
