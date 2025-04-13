@@ -3,7 +3,7 @@ import board
 import prompt
 
 SCREEN_WIDTH = 500
-SCREEN_HEIGHT = 400
+SCREEN_HEIGHT = 500
 
 pygame.init()
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -23,11 +23,10 @@ while run:
 
     SCREEN.fill((145, 135, 97))
 
-    board.draw_board(SCREEN, SCREEN_HEIGHT)  
-
-    move = prompt.promptForMove()
+    board.draw_board(SCREEN)  
 
     pygame.display.update()
+    move = prompt.promptForMove()
 
 pygame.quit()
 
