@@ -14,6 +14,9 @@ class Game:
                     pygame.draw.rect(surface, (200, 190, 145), rect) 
                 else:
                     pygame.draw.rect(surface, (145, 135, 97), rect)
+        # added border
+        pygame.draw.rect(surface, (145, 135, 97), (0, 0, SCREEN_WIDTH, SCREEN_HEIGHT), 5)
+
 
     def show_pieces(self, surface):
         for row in range(8):

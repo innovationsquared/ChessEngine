@@ -1,9 +1,10 @@
 import pygame
-import prompt
+from square import *
 from game import Game 
 from selector import Selector
 from const import *
 from board import Board
+from move import *
 
 class Main:
     def __init__(self):
@@ -19,8 +20,6 @@ class Main:
         game = self.game
         selector = self.selector
         board = self.board
-        # Give instructions
-        print(prompt.getInstructions())
 
         #first_turn = True # as soon as first turn occurs set to false
         run = True
@@ -43,6 +42,8 @@ class Main:
                         #print(col_selected)
                         if board.squares[row_selected][col_selected].has_piece():
                           piece = board.squares[row_selected][col_selected].piece
+                          initial_row = row_selected
+                          initial_col = col_selected
                           print('selected piece')
                     #right click
                     elif event.button == 3:
@@ -50,15 +51,25 @@ class Main:
                             selector.update_pos(event.pos)
                             new_row = selector.mouseY // SQSIZE
                             new_col = selector.mouseX // SQSIZE
-                            if not board.squares[new_row][new_col].has_piece():
-                                img = pygame.image.load(piece.texture)
-                                img = pygame.transform.scale(img, (500 // 8, 500 // 8))
-                                img_center = new_col * SQSIZE + SQSIZE // 2, new_row * SQSIZE + SQSIZE // 2
-                                piece.texture_rect = img.get_rect(center = img_center)
-                                screen.blit(img, piece.texture_rect)
+
+                            # create possible move
+                            initial = Square(initial_row, initial_col)
+                            target = Square(new_row, new_col)
+                            move = Move(initial, target)
+
+                            if board.valid_move(piece, move):
+                                print('valid')
+                                board.move(piece, move)
+                                # show
+                                game.draw_board(screen)
+                                game.show_pieces(screen)
+                            # if not board.squares[new_row][new_col].has_piece():
+                            #     img = pygame.image.load(piece.texture)
+                            #     img = pygame.transform.scale(img, (500 // 8, 500 // 8))
+                            #     img_center = new_col * SQSIZE + SQSIZE // 2, new_row * SQSIZE + SQSIZE // 2
+                            #     piece.texture_rect = img.get_rect(center = img_center)
+                            #     screen.blit(img, piece.texture_rect)
                         
-
-
 
                 elif event.type == pygame.MOUSEBUTTONUP:
                     pass

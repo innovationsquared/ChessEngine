@@ -9,8 +9,29 @@ SQSIZE = 500 // ROWS
 class Board:
     def __init__(self):
         self.squares = [[0,0,0,0,0,0,0,0] for col in range(8)] 
+        self.last_move = None
         self.create()
         self.add_pieces()
+    
+    def move(self, piece, move):
+        initial = move.initial
+        target = move.target
+
+        self.squares[target.row][target.col].piece = piece
+        self.squares[initial.row][initial.col] = None # update last position
+
+        piece.moved = True
+
+        # Clear valid moves
+        piece.clear_moves()
+
+        # change last move
+        self.last_move = move
+
+        
+
+    def valid_move(self, piece, move):
+        return move in piece.moves
         
     # Calculate all valid moves of a specific piece at a position.
     def calculate_moves(self, piece, row, col):
@@ -75,22 +96,66 @@ class Board:
                         move = Move(initial, target)
                         piece.add_move(move)
 
+        # bishop, queen and rook all go in lines
+        def linear_moves(increments):
+            for inc in increments:
+                row_inc, col_inc = inc
+                potential_move_row = row + row_inc
+                potential_move_col = col + col_inc
+
+                while True:
+                    if Square.in_range(potential_move_row, potential_move_col):
+                        initial = Square(row, col)
+                        target = Square(potential_move_row, potential_move_col)
+                        move = Move(initial, target)
+                        
+                        # empty square, add move and continue looping
+                        if self.squares[potential_move_row][potential_move_col].isempty():
+                            piece.add_move(move)
+
+                        # has enemy, add move, break
+                        if self.squares[potential_move_row][potential_move_col].has_rival(piece.color):
+                            piece.add_move(move)
+                            break # break out if there's a piece
+                        
+                        # ally piece (break)
+                        if self.squares[potential_move_row][potential_move_col].has_ally(piece.color):
+                            break # break out if there's a piece
+
+                    # increment increments
+                    potential_move_row = potential_move_row + row_inc
+                    potential_move_col = potential_move_col + col_inc
+                        
         
         if piece.name == 'pawn':
             pawn_moves()
-
         elif piece.name == 'knight':
             knight_moves()
-
         elif piece.name == 'bishop':
-            pass
-
+            linear_moves([
+                (-1, 1), 
+                (-1, -1),
+                (1, 1),
+                (1, -1)
+            ])
         elif piece.name == 'rook':
-            pass
-
+            linear_moves([
+                (1, 0),
+                (0, 1),
+                (-1, 0),
+                (0, -1)
+            ])
         elif piece.name == 'queen':
-            pass
-
+            linear_moves([
+                (-1, 1), 
+                (-1, -1),
+                (1, 1),
+                (1, -1),
+                (1, 0),
+                (0, 1),
+                (-1, 0),
+                (0, -1)
+            ])
         elif piece.name == 'king':
             pass
 
