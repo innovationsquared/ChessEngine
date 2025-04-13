@@ -74,7 +74,6 @@ class Main:
                             #     screen.blit(img, piece.texture_rect)
             #loadBoard(SCREEN, loadPosFromFen(startFEN))
             pygame.display.update()
-            #move = prompt.promptForMove()
 
         pygame.quit()
 
