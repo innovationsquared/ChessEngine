@@ -3,8 +3,8 @@ from board import Board
 from const import *
 
 class Game:
-    def __init__(self):
-        self.board = Board()
+    def __init__(self,board):
+        self.board = board
 
     def draw_board(self, surface):
         for i in range(8):

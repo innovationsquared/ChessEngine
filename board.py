@@ -18,7 +18,7 @@ class Board:
         target = move.target
 
         self.squares[target.row][target.col].piece = piece
-        self.squares[initial.row][initial.col] = None # update last position
+        self.squares[initial.row][initial.col].piece = None # update last position
 
         piece.moved = True
 
