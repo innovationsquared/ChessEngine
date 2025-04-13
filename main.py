@@ -48,6 +48,7 @@ class Main:
                           piece = board.squares[row_selected][col_selected].piece
                           initial_row = row_selected
                           initial_col = col_selected
+                          board.calculate_moves(piece, initial_row, initial_col)
                           print(f'selected {piece.type}')
                     #right click
                     elif event.button == 3:

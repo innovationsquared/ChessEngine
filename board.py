@@ -31,7 +31,10 @@ class Board:
         
 
     def valid_move(self, piece, move):
+        for move in piece.moves:
+            print(move)
         return move in piece.moves
+
         
     # Calculate all valid moves of a specific piece at a position.
     def calculate_moves(self, piece, row, col):
@@ -140,25 +143,25 @@ class Board:
                         move = Move(initial, target)
                         piece.add_move(move)   
         
-        if piece.name == 'pawn':
+        if piece.type == 'pawn':
             pawn_moves()
-        elif piece.name == 'knight':
+        elif piece.type == 'knight':
             knight_moves()
-        elif piece.name == 'bishop':
+        elif piece.type == 'bishop':
             linear_moves([
                 (-1, 1), 
                 (-1, -1),
                 (1, 1),
                 (1, -1)
             ])
-        elif piece.name == 'rook':
+        elif piece.type == 'rook':
             linear_moves([
                 (1, 0),
                 (0, 1),
                 (-1, 0),
                 (0, -1)
             ])
-        elif piece.name == 'queen':
+        elif piece.type == 'queen':
             linear_moves([
                 (-1, 1), 
                 (-1, -1),
@@ -169,7 +172,7 @@ class Board:
                 (-1, 0),
                 (0, -1)
             ])
-        elif piece.name == 'king':
+        elif piece.type == 'king':
             king_moves()
 
 

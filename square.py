@@ -23,7 +23,7 @@ class Square:
     
     # Check if the positions are in the bounds of the board
     @staticmethod
-    def check_range(*args):
+    def in_range(*args):
         for arg in args:
             if arg < 0 or arg > 7:
                 return False
